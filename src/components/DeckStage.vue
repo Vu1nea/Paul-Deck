@@ -146,6 +146,8 @@ onUnmounted(() => {
   overflow: hidden;
   border-radius: 3px;
   background: #0d0d0f;
+  position: relative;
+  flex-shrink: 0;
 }
 .thumb-inner {
   width: 1920px;
@@ -155,6 +157,20 @@ onUnmounted(() => {
   transform-origin: top left;
   pointer-events: none;
   user-select: none;
+  contain: strict;
+}
+
+/* Base slide styles for thumbnail context (sections are child component roots
+   and get the scoped attribute, but they're outside .deck-stage here) */
+.thumb-inner :deep(section) {
+  position: absolute;
+  inset: 0;
+  width: 1920px;
+  height: 1080px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-display);
+  overflow: hidden;
 }
 
 /* ── Main stage area ── */
